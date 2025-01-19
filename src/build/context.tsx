@@ -1,35 +1,35 @@
 "use client";
 
 import { createContext, ReactNode, useContext, useMemo, useState } from "react";
-// import { Content } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 
-// type CustomizerControlsContext = {
-//   selectedWheel?: Content.BoardCustomizerDocumentDataWheelsItem;
-//   setWheel: (wheel: Content.BoardCustomizerDocumentDataWheelsItem) => void;
-//   selectedDeck?: Content.BoardCustomizerDocumentDataDecksItem;
-//   setDeck: (deck: Content.BoardCustomizerDocumentDataDecksItem) => void;
-//   selectedTruck?: Content.BoardCustomizerDocumentDataMetalsItem;
-//   setTruck: (trucks: Content.BoardCustomizerDocumentDataMetalsItem) => void;
-//   selectedBolt?: Content.BoardCustomizerDocumentDataMetalsItem;
-//   setBolt: (bolts: Content.BoardCustomizerDocumentDataMetalsItem) => void;
-// };
+type CustomizerControlsContext = {
+  selectedWheel?: Content.BoardCustomizerDocumentDataWheelsItem;
+  setWheel: (wheel: Content.BoardCustomizerDocumentDataWheelsItem) => void;
+  selectedDeck?: Content.BoardCustomizerDocumentDataDecksItem;
+  setDeck: (deck: Content.BoardCustomizerDocumentDataDecksItem) => void;
+  selectedTruck?: Content.BoardCustomizerDocumentDataMetalsItem;
+  setTruck: (trucks: Content.BoardCustomizerDocumentDataMetalsItem) => void;
+  selectedBolt?: Content.BoardCustomizerDocumentDataMetalsItem;
+  setBolt: (bolts: Content.BoardCustomizerDocumentDataMetalsItem) => void;
+};
 
-// const defaultContext: CustomizerControlsContext = {
-//   setWheel: () => {},
-//   setDeck: () => {},
-//   setTruck: () => {},
-//   setBolt: () => {},
-// };
+const defaultContext: CustomizerControlsContext = {
+  setWheel: () => {},
+  setDeck: () => {},
+  setTruck: () => {},
+  setBolt: () => {},
+};
 
-// const CustomizerControlsContext = createContext(defaultContext);
+const CustomizerControlsContext = createContext(defaultContext);
 
-// type CustomizerControlsProviderProps = {
-//   defaultWheel?: Content.BoardCustomizerDocumentDataWheelsItem;
-//   defaultDeck?: Content.BoardCustomizerDocumentDataDecksItem;
-//   defaultTruck?: Content.BoardCustomizerDocumentDataMetalsItem;
-//   defaultBolt?: Content.BoardCustomizerDocumentDataMetalsItem;
-//   children?: ReactNode;
-// };
+type CustomizerControlsProviderProps = {
+  defaultWheel?: Content.BoardCustomizerDocumentDataWheelsItem;
+  defaultDeck?: Content.BoardCustomizerDocumentDataDecksItem;
+  defaultTruck?: Content.BoardCustomizerDocumentDataMetalsItem;
+  defaultBolt?: Content.BoardCustomizerDocumentDataMetalsItem;
+  children?: ReactNode;
+};
 
 export function CustomizerControlsProvider({
   defaultWheel,
