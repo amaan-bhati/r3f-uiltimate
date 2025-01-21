@@ -88,7 +88,9 @@ export function FooterPhysics({
       },
     });
 
-
+    // Add boundaries to the scene
+    let boundaries = createBoundaries(cw, ch);
+    World.add(engine.current.world, boundaries);
 
     // Add mouse interaction for dragging boards
     const mouse = Mouse.create(render.canvas);
@@ -119,9 +121,22 @@ export function FooterPhysics({
       render.options.height = ch;
       Render.setPixelRatio(render, window.devicePixelRatio);
 
+      World.remove(engine.current.world, boundaries);
+      boundaries = createBoundaries(cw, ch);
+      World.add(engine.current.world, boundaries);
     }
 
-   
+    // Create walls/boundaries around the scene to keep boards in
+    function createBoundaries(width: number, height: number) {
+      return [
+        Bodies.rectangle(width / 2, -10, width, 20, { isStatic: true }), // Top
+        Bodies.rectangle(-10, height / 2, 20, height, { isStatic: true }), // Left
+        Bodies.rectangle(width / 2, height + 10, width, 20, { isStatic: true }), // Bottom
+        Bodies.rectangle(width + 10, height / 2, 20, height, {
+          isStatic: true,
+        }), // Right
+      ];
+    }
 
     // Runner manages the animation loop and updates engine 60 times per second
     const runner = Runner.create();
