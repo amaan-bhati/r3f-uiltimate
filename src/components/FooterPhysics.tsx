@@ -39,6 +39,10 @@ export function FooterPhysics({
 
     handleResize(); // Run on mount
     window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   // Fewer boards on mobile
