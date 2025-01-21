@@ -41,7 +41,10 @@ export function FooterPhysics({
     window.addEventListener("resize", handleResize);
   }, []);
 
- 
+  // Fewer boards on mobile
+  const limitedBoardTextures = isMobile
+    ? boardTextureURLs.slice(0, 3)
+    : boardTextureURLs;
 
   // Intersection Observer to start/stop the physics simulation
   useEffect(() => {
@@ -160,7 +163,43 @@ export function FooterPhysics({
     };
   }, [inView]);
 
+  // Add boards to the scene
+  useEffect(() => {
+    if (!scene.current || !inView) return;
 
+    const world = engine.current.world;
+    const cw = scene.current.clientWidth;
+    const ch = scene.current.clientHeight;
+
+    const boards = limitedBoardTextures.map((texture) => {
+      // Randomize board position and rotation
+      const x = Math.random() * cw;
+      const y = Math.random() * (ch / 2 - 100) + 50;
+      const rotation = ((Math.random() * 100 - 50) * Math.PI) / 180;
+
+      return Bodies.rectangle(x, y, 80, 285, {
+        chamfer: { radius: 40 }, // Rounded corners for accurate collision
+        angle: rotation,
+        restitution: 0.8, // Bounciness
+        friction: 0.005, // minimal friction
+        render: {
+          sprite: {
+            texture,
+            xScale: 0.5, // Scale texture down
+            yScale: 0.5,
+          },
+        },
+      });
+    });
+
+    if (boards.length > 0) {
+      World.add(engine.current.world, boards); // Add boards to the world
+    }
+
+    return () => {
+      World.remove(world, boards);
+    };
+  }, [limitedBoardTextures, inView]);
 
   return <div ref={scene} className={className} />;
 }
