@@ -46,10 +46,17 @@ export default async function Page(props: {
   return (
     <div className="flex min-h-screen flex-col lg:flex-row">
       <CustomizerControlsProvider
+        // defaultWheel={defaultWheel}
+        // defaultDeck={defaultDeck}
+        // defaultTruck={defaultTruck}
+        // defaultBolt={defaultBolt}
       >
         <div className="relative aspect-square shrink-0 bg-[#3a414a] lg:aspect-auto lg:grow">
           <div className="absolute inset-0">
-
+            {/* <Preview
+            //   deckTextureURLs={deckTextureURLs}
+            //   wheelTextureURLs={wheelTextureURLs}
+            /> */}
           </div>
 
           <Link href="/" className="absolute left-6 top-6">
@@ -61,9 +68,14 @@ export default async function Page(props: {
             Build your board
           </Heading>
           <Controls
-       
+            // wheels={wheels}
+            // decks={decks}
+            // metals={metals}
+            // className="mb-6"
           />
-       
+          {/* <ButtonLink href="" color="lime" icon="plus">
+            Add to cart
+          </ButtonLink> */}
         </div>
       </CustomizerControlsProvider>
       <Loading />
